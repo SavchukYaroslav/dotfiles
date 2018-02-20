@@ -1,2 +1,3 @@
 alias g="git"
 alias kub="kubectl"
+alias d="docker"

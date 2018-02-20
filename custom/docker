@@ -1,54 +1,22 @@
-# ------------------------------------
-# Docker alias and function
-# ------------------------------------
+# Autocompletion for docker CLI
+#
+# Author: https://github.com/yssavchuk
 
-# Get latest container ID
-alias dl="docker ps -l -q"
-
-# Get container process
+# Container managment.
 alias dps="docker ps"
-
-# Get process included stop container
 alias dpa="docker ps -a"
-
-# Get images
-alias di="docker images"
-
-# Get container IP
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-
-# Run deamonized container, e.g., $dkd base /bin/echo hello
-alias dkd="docker run -d -P"
-
-# Run interactive container, e.g., $dki base /bin/bash
-alias dki="docker run -i -t -P"
-
-# Execute interactive container, e.g., $dex base /bin/bash
+alias drd="docker run -d"
+alias drit="docker run -i -t"
 alias dex="docker exec -i -t"
-
-# Stop all containers
 dstop() { docker stop $(docker ps -a -q); }
-
-# Remove all containers
 drm() { docker rm $(docker ps -a -q); }
-
-# Stop and Remove all containers
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-
-# Remove all images
-dri() { docker rmi $(docker images -q); }
-
-# Dockerfile build, e.g., $dbu tcnksm/test
-dbu() { docker build -t=$1 .; }
-
-# Show all alias related docker
-dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
-
-# Bash into running container
+drmf() { docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q); }
 dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 
-# Docker tag and push to docker hub
-dhub() { docker tag $1 $2 && docker push $2; }
-
-# Docker tag and push to google container registry
-dgcr() { docker tag $1 $2 && gcloud docker -- push $2; }
+# Images managment
+alias di="docker images"
+drmia() { docker rmi $(docker images -q) }
+dbu() { docker build $@ .; }
+drmi() { docker images | grep "^<none>" > /tmp/dri.tmp && docker rmi `awk '{print $3}' /tmp/dri.tmp` && rm /tmp/dri.tmp || true }
+dclean() { drmf; drmi; }

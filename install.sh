@@ -5,12 +5,8 @@ if ! is-executable zsh; then
   echo 'Install zsh first'; exit 1;
 fi
 
-# Update or install oh-my-zsh
-if is-executable upgrade_oh_my_zsh; then
-  upgrade_oh_my_zsh
-else
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
+# Install oh-my-zsh if needed
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Get current dir (so run this script from anywhere)
 export DOTFILES_DIR DOTFILES_CACHE DOTFILES_EXTRA_DIR
@@ -27,3 +23,10 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 ln -sfv "$DOTFILES_DIR/.zshrc" ~
 ln -sfv "$DOTFILES_DIR/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/.gitignore_global" ~
+
+# Symbolic links to custom zsh plugins
+ZSH_CUSTOM=$ZSH/custom
+DOTFILES_CUSTOM=$DOTFILES_DIR/custom
+for CUSTOM in `ls $DOTFILES_CUSTOM`; do
+  ln -sfv $DOTFILES_CUSTOM/$CUSTOM $ZSH_CUSTOM/$CUSTOM.zsh
+done

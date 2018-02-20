@@ -1,4 +1,3 @@
-# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 READLINK=$(which greadlink || which readlink)
 CURRENT_SCRIPT=$BASH_SOURCE
 
@@ -33,3 +32,5 @@ fi
 for DOTFILE in $OS_DOTFILES_DIR/.{env,alias,function}; do
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
+
+unset DOTFILE

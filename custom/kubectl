@@ -7,7 +7,7 @@ alias kgp='kubectl get pod'
 alias klp='kubectl logs -f'
 alias kep='kubectl edit pod'
 alias kdesp='kubectl describe pod'
-alias kdelp='kubectl delete pods
+alias kdelp='kubectl delete pods'
 alias kex='kubectl exec -it'
 kbash() { kubectl exec -it $1 bash; }
 
@@ -15,7 +15,13 @@ kbash() { kubectl exec -it $1 bash; }
 alias kgj='kubectl get job'
 alias kep='kubectl edit job'
 alias kdesp='kubectl describe job'
-alias kdelp='kubectl delete job
+alias kdelp='kubectl delete job'
+
+# Ingress management.
+alias kgi='kubectl get ingress'
+alias kei='kubectl edit ingress'
+alias kdesi='kubectl describe ingress'
+alias kdeli='kubectl delete ingress'
 
 # Service management.
 alias kgs='kubectl get svc'

@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# Check for zsh installation
-if ! is-executable zsh; then
-  echo 'Install zsh first'; exit 1;
-fi
-
-# Install oh-my-zsh if needed
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 # Get current dir (so run this script from anywhere)
 export DOTFILES_DIR DOTFILES_CACHE DOTFILES_EXTRA_DIR
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -15,6 +7,14 @@ DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
 
 # Make utilities available
 PATH="$DOTFILES_DIR/bin:$PATH"
+
+# Check for zsh installation
+if ! is-executable zsh; then
+  echo 'Install zsh first'; exit 1;
+fi
+
+# Install oh-my-zsh if needed
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Update dotfiles itself first
 #if is-executable git -a -d "$DOTFILES_DIR/.git"; then git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master; fi

@@ -23,6 +23,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 ln -sfv "$DOTFILES_DIR/.zshrc" ~
 ln -sfv "$DOTFILES_DIR/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/.gitignore_global" ~
+ln -sfv "$DOTFILES_DIR/.gemrc" ~
+ln -sfv "$DOTFILES_DIR/.rspec" ~
+ln -sfv "$DOTFILES_DIR/.pryrc" ~
 
 # Symbolic links to custom zsh plugins
 ZSH_CUSTOM=$ZSH/custom

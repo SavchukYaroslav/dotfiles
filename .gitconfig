@@ -1,9 +1,10 @@
 [user]
 	name = Yaroslav Savchuk
-	email = ysavchuk@heliostech.fr
+	email = savchukyarpolk@gmail.com
 [core]
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = /Users/yaroslavsavchuk/.gitignore_global
 [web]
 	browser = google-chrome
 [alias]
